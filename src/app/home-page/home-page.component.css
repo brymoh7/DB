@@ -1,0 +1,45 @@
+/* Style for the login form */
+.login-form {
+  margin: 0 auto;
+  max-width: 400px;
+  padding: 20px;
+}
+
+/* Style for the input fields and labels */
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: calc(100% - 30px); /* Adjust width to accommodate the icon */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style for the OTP wrapper */
+.otp-wrapper {
+  position: relative;
+}
+
+/* Style for the OTP input wrapper */
+.otp-input-wrapper {
+  position: relative;
+}
+
+/* Style for the visibility icon */
+.password-toggle-icon {
+  position: absolute;
+  right: 5px;
+  top: 35%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/* Style for the error message */
+.error-message {
+  color: red;
+  margin-top: 10px;
+}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+
+  <!-- Angular Material icons stylesheet -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    /* Reset some default browser styles */
+    body, h1, h2, p, ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navigation Bar Styles */
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
+    }
+
+    header a {
+      color: #fff;
+      text-decoration: none;
+      padding: 5px 10px;
+      text-align: center;
+    }
+
+    header a:hover {
+      background-color: #111;
+    }
+
+    header img {
+      max-width: 200px;
+      max-height: 100px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .icon-button {
+      background-color: #990909;
+      color: #ece2e2;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    /* Password Change Form Styles */
+    form {
+      width: 400px;
+      margin: 50px auto;
+      padding: 60px;
+      border: 4px double #ccc;
+      border-radius: 8px;
+    }
+
+    form div {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: calc(100% - 24px);
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    input[type="password"]::after {
+      content: '\1F50E'; /* Unicode for eye icon */
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    input[type="password"].hide-password::after {
+      content: '\1F513'; /* Unicode for eye crossed out icon */
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #0b0c0e;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: hsl(149, 25%, 32%);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a>
+      <img src="assets/ptbLogo(1).png" alt="Your Logo">
+    </a>
+    <a></a>
+    <h1>PASSWORD CHANGE</h1>
+    <a></a>
+    <a></a>
+    <nav>
+      <button class="icon-button" (click)="logout()">
+        <mat-icon>power_settings_new</mat-icon> <!-- Power icon -->
+      </button>
+    </nav>
+  </header>
+
+<!-- Password Change Form -->
+<form (submit)="submitForm()">
+  <div>
+    <label for="username">
+      <mat-icon>account_circle</mat-icon> <!-- Username icon -->
+      Username:
+    </label>
+    <div id="username" class="username-field">{{ usernameValue }}</div>
+  </div>
+  <div class="password-field">
+    <label for="newPassword">
+      <mat-icon>lock</mat-icon> <!-- New password icon -->
+      New Password:
+    </label>
+    <div class="password-input-wrapper">
+      <input type="password" id="newPassword" name="newPassword" [type]="newPasswordHidden ? 'password' : 'text'" required #newPassword>
+      <mat-icon (click)="togglePasswordVisibility('newPassword')" class="password-toggle-icon">{{ newPasswordHidden ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </div>
+  </div>
+  <div class="password-field">
+    <label for="confirmPassword">
+      <mat-icon>lock</mat-icon> <!-- Confirm password icon -->
+      Confirm Password:
+    </label>
+    <div class="password-input-wrapper">
+      <input type="password" id="confirmPassword" name="confirmPassword" [type]="confirmPasswordHidden ? 'password' : 'text'" required #confirmPassword>
+      <mat-icon (click)="togglePasswordVisibility('confirmPassword')" class="password-toggle-icon">{{ confirmPasswordHidden ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </div>
+  </div>
+ <!-- Alert message for password change success or error -->
+ <div *ngIf="alertservice.alert$ | async as alert;">
+  <div *ngIf="alert.type === 'success'" class="alert alert-success">
+    {{ alert.message }}
+  </div>
+  <div *ngIf="alert.type === 'error'" class="alert alert-danger">
+    {{ alert.message }}
+  </div>
+</div>
+
+  <button type="submit">Change Password</button>
+</form>

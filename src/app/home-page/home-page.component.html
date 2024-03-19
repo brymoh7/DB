@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 100;
+      height: 110vh;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .content-wrapper {
+      display: flex;
+      flex: 1;
+    }
+
+    .left-section {
+  flex: 1;
+  background: url('assets/chng.jpg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fffefe; /* Add harsh color here */
+}
+
+
+    .right-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column; /* Align items in a column */
+      justify-content: center;
+      align-items: center;
+      background-color: #f4f4f4;
+    }
+
+    .company-logo {
+      max-width: 60%;
+      height: auto;
+      margin-bottom: 100px;
+    }
+
+    .login-form {
+  max-width: 400px;
+  width: 100%;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(51, 50, 50, 0.1);
+  margin-top: -100px; /* Adjust this value to push the form up */
+}
+
+
+    .login-form label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    .login-form button {
+      width: 100%;
+      padding: 10px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* Footer Styles */
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content-wrapper">
+    <!-- Left Section with Image -->
+    <div class="left-section">
+      <img src="assets/db2.png" alt="DB2 Image">
+    </div>
+  </div>
+
+
+    <!-- Right Section & Company Logo, Login Form -->
+    <div class="right-section">
+      <img class="company-logo" src="assets/ptbLogo.png" alt="Company Logo">
+
+      <div *ngIf="loginResponseMessage" class="response-message">
+        {{ loginResponseMessage }}
+      </div>
+
+      <div *ngIf="showAlert" class="alert alert-success" role="alert">
+        Login successful!
+      </div>
+
+      <div class="login-form">
+        <h2>Login</h2>
+        <form [formGroup]="loginForm">
+          <label for="email">
+            <mat-icon>person</mat-icon>
+            Email:
+          </label>
+          <input type="email" id="email" formControlName="email" required>
+
+          <label for="password">
+            <mat-icon>lock</mat-icon>
+            Password:
+          </label>
+          <input type="password" id="password" formControlName="password" required>
+
+          <!-- OTP field with toggle icon -->
+          <div class="otp-wrapper">
+            <label for="otp">
+              <mat-icon>security</mat-icon>
+              OTP:
+            </label>
+            <div class="otp-input-wrapper">
+              <input type="{{ otpHidden ? 'password' : 'text' }}" id="otp" formControlName="otp" required>
+              <mat-icon (click)="toggleOtpVisibility()" class="password-toggle-icon">
+                {{ otpHidden ? 'visibility_off' : 'visibility' }}
+              </mat-icon>
+            </div>
+          </div>
+
+          <label for="userDBName">
+            <mat-icon>person</mat-icon>
+            DB Username:
+          </label>
+          <input type="text" id="userDBName" formControlName="userDBName" required>
+
+          <button type="button" (click)="onLogin()">Login</button>
+        </form>
+      </div>
+
+      <!-- Add this div to display the error message -->
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+
+
+  <!-- Footer -->
+  <footer>
+    &copy; IT PremiumtrustBank
+  </footer>
+
+<!--</body
+</html>
+-->

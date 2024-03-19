@@ -1,0 +1,57 @@
+/* Style for the password field */
+.password-field {
+  position: relative;
+}
+
+/* Style for the password input wrapper */
+.password-input-wrapper {
+  position: relative;
+}
+
+/* Style for the visibility icon */
+.password-toggle-icon {
+  position: absolute;
+  right: 9px;
+  top: 56%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.username-field {
+  border: 1px solid #ccc;
+  padding: 5px;
+  background-color: #f9f9f9;
+  cursor: not-allowed; /* Prevent cursor change on hover */
+  user-select: none; /* Prevent text selection */
+}
+
+/* Style for the alert message */
+.alert {
+  margin-top: 10px;
+}
+
+.alert-success {
+  color: rgb(241, 21, 51);
+}
+
+.alert-danger {
+  color: red;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-success {
+  color: #58db58;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.alert-error {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
